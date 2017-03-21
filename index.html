@@ -66,11 +66,11 @@
 						<input type="email" name="email" id="email">
 					</div>
 					<div class="SubscribeBox Box">
-						<label for="subscribe">Subscribe to newsletter</label>
-						<div class="subscribeSlide">
-							<div class="subscribeButt"></div>
+						<label for="subscribe">Subscribe for newsletter</label>
+						<div class="subscribeSlide yes-c">
+							<div class="subscribeButt yes"></div>
 						</div>
-						<input type="hidden" name="subscribe" value="Yes" name="subscribe" id="subscribe">
+						<input type="hidden" name="subscribe" value="Yes" id="subscribe">
 					</div>
 					<div class="FutureYear Box">
 						<!--Ползунок лет, будущих. Типо, вклад на 10 лет и тд и тп-->
@@ -90,10 +90,13 @@
 					
 					if (!emailVal) {
 						$(".EmailBox .label").removeClass('typeLabel').addClass('noneType');
+						$(".EmailBox #email").removeClass('focus');
 						$(".NameBox .label").removeClass('noneType').addClass('typeLabel');
+						$(".NameBox #name").addClass('focus');
 					}
 					else{
 						$(".NameBox .label").removeClass('noneType').addClass('typeLabel');
+						$(".NameBox #name").addClass('focus');
 					}
 		        });
 				$("#email").focus(function(){
@@ -102,12 +105,30 @@
 					
 					if (!nameVal) {
 						$(".EmailBox .label").removeClass('noneType').addClass('typeLabel');
+						$(".EmailBox #email").addClass('focus');
 						$(".NameBox .label").removeClass('typeLabel').addClass('noneType');
+						$(".NameBox #name").removeClass('focus');
 					}
 					else{
 						$(".EmailBox .label").removeClass('noneType').addClass('typeLabel');
+						$(".EmailBox #email").addClass('focus');
 					}
 					
+		        });
+					var choise = true;
+		        $(".subscribeSlide").click(function(){
+		        	
+		        	if (choise) {
+		        		choise = false;
+		        		$(".subscribeButt").removeClass("yes").addClass("no");
+		        		$("#subscribe").val('No');
+		        		$(".subscribeSlide").removeClass("yes-c").addClass("no-c");
+		        	}else{
+		        		choise = true;
+		        		$(".subscribeButt").removeClass("no").addClass("yes");
+		        		$("#subscribe").val('Yes');
+		        		$(".subscribeSlide").removeClass("no-c").addClass("yes-c");
+		        	}
 		        });
 			});
 	</script>
